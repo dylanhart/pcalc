@@ -126,7 +126,9 @@ Stmts
         return [s];
     }
 
-Stmt = (RVarStmt / VarStmt / QueryStmt)
+Stmt = (RVarStmt / VarStmt / QueryStmt / Comment)
+
+Comment = $('#'[^\n]*)'\n'
 
 RVarStmt = rvar:RVar _ "~" _ dist:DistName _ POpen _ args:Args _ PClose {
     if (dists[dist].length != args.length)
