@@ -142,7 +142,7 @@ VarStmt = v:Var _ '=' _ val:Expr {
     return v + ' was assigned';
 }
 
-QueryStmt = tag:$([A-Za-z0-9_ ]+)? '?' _ val:Expr {
+QueryStmt = tag:$([A-Za-z0-9./_ ]+)? '?' _ val:Expr {
     tag = (tag && tag.trim()) || '';
     return [tag, val];
 }

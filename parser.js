@@ -168,8 +168,8 @@
             scalars[v] = val;
             return v + ' was assigned';
         },
-        peg$c14 = /^[A-Za-z0-9_ ]/,
-        peg$c15 = peg$classExpectation([["A", "Z"], ["a", "z"], ["0", "9"], "_", " "], false, false),
+        peg$c14 = /^[A-Za-z0-9.\/_ ]/,
+        peg$c15 = peg$classExpectation([["A", "Z"], ["a", "z"], ["0", "9"], ".", "/", "_", " "], false, false),
         peg$c16 = "?",
         peg$c17 = peg$literalExpectation("?", false),
         peg$c18 = function(tag, val) {
