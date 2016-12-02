@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Distribution Calculator</title>
+	<title>Discrete Distribution Calculator</title>
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
@@ -15,16 +15,16 @@
 </head>
 <body>
 <div class="container">
-	<h1>Distribution Calculator</h1>
+	<h1>Discrete Distribution Calculator</h1>
 
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h3 class="panel-title">Input</h3>
 		</div>
-		<textarea class="form-control" rows=15></textarea>
+		<textarea id="input-area" class="form-control" rows=15></textarea>
 	</div>
 	<div class="form-group">
-		<button class="btn btn-md btn-success">Calculate</button>
+		<button id="calc-btn" class="btn btn-md btn-success">Calculate</button>
 	</div>
 
 	<div class="panel panel-default">
@@ -32,12 +32,27 @@
 			<h3 class="panel-title">Output</h3>
 		</div>
 		<div class="panel-body">
-			<dl class="dl-horizontal">
-				<dt>P(X > 2)</dt>
-				<dd>.7645</dd>
-			</dl>
+			<dl id="output" class="dl-horizontal"></dl>
 		</div>
 	</div>
+	<script type="text/javascript" src="parser.js"></script>
+	<script type="text/javascript">
+		window.onload = function() {
+			var btn = document.getElementById('calc-btn');
+			var input = document.getElementById('input-area');
+			var output = document.getElementById('output');
+			btn.addEventListener('click', function() {
+				var out = parser.parse(input.value);
+				console.log(out);
+				var queries = out.filter(Array.isArray);
+				console.log(queries);
+				var html = queries.reduce(function(acc, q) {
+					return acc + '<dt>' + q[0] + '</dt><dd>' + q[1] + '</dd>';
+				}, '');
+				output.innerHTML = html;
+			});
+		};
+	</script>
 </div>
 </body>
 </html>
