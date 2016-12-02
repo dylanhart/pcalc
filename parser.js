@@ -1671,7 +1671,7 @@
         dists.geometric = function(p) {
             return {
                 p: function(x) {
-                    if (!Number.isInteger(x) || x < 0)
+                    if (!Number.isInteger(x) || x <= 0)
                         return 0;
                     return Math.pow(1-p, x-1) * p
                 },
@@ -1680,7 +1680,7 @@
                         i = Math.floor(i);
                     if (i < 0) return 0;
                     var sum = 0;
-                    while (i >= 0) {
+                    while (i > 0) {
                         sum += this.p(i--);
                     }
                     return sum;
