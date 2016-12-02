@@ -21,3 +21,9 @@ PCalc is a [discrete distribution][1] probability calculator.
 |--:|:--|
 ||.828125|
 ||5|
+
+### Building
+
+To convert the parser to js, run the following:
+
+	$ pegjs -e parser --format globals parser.pegjs
