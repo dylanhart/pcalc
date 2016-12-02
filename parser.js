@@ -167,7 +167,7 @@
         peg$c10 = "?",
         peg$c11 = peg$literalExpectation("?", false),
         peg$c12 = function(tag, val) {
-            tag = (tag && tag.trim()) || 'query' + outputs++;
+            tag = (tag && tag.trim()) || '';
             return [tag, val];
         },
         peg$c13 = ",",
@@ -1658,7 +1658,6 @@
 
         var env = {};
         var scalars = {};
-        var outputs = 0;
 
 
     peg$result = peg$startRuleFunction();

@@ -113,7 +113,6 @@
 
     var env = {};
     var scalars = {};
-    var outputs = 0;
 }
 
 Stmts
@@ -140,7 +139,7 @@ VarStmt = v:Var _ '=' _ val:Expr {
 }
 
 QueryStmt = tag:$([A-Za-z0-9_ ]+)? '?' _ val:Expr {
-    tag = (tag && tag.trim()) || 'query' + outputs++;
+    tag = (tag && tag.trim()) || '';
     return [tag, val];
 }
 
