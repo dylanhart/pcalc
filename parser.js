@@ -252,8 +252,8 @@
             case '=': return env[rvar].p(val);
             case '!=': return 1 - env[rvar].p(val);
             case '<=': return env[rvar].F(val);
-            case '<': return env[rvar].F(val-1);
-            case '>=': return 1 - env[rvar].F(val-1);
+            case '<': return env[rvar].F(val-epsilon);
+            case '>=': return 1 - env[rvar].F(val-epsilon);
             case '>': return 1 - env[rvar].F(val);
             }
             throw new Error('invalid operator ' + op);
@@ -1655,6 +1655,8 @@
                 }
             };
         };
+
+        var epsilon = .00001;
 
         var env = {};
         var scalars = {};
