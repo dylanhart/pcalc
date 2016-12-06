@@ -65,6 +65,31 @@
 		</div>
 		<div class="tab-pane" role="tabpanel" id="help">
 			<h3>Help</h3>
+			<p>To create a random variable, use the <code>~</code> operator with a random distribution. Random variables <strong>MUST</strong> start with a capital letter.</p>
+			<pre><code>
+X ~ Geometric(.4)
+			</code></pre>
+			<p>The available distributions are: <code>Bernoulli</code>, <code>Binomial</code>, <code>Geometric</code>, <code>HyperGeometric</code>, and <code>Poisson</code>.
+			<p>To create a constant, use the <code>=</code> operator. Constants <strong>MUST</strong> start with a lowercase letter.</p>
+			<pre><code>
+a = 2 + 2
+			</code></pre>
+			<p>Probilities may be calculated with the <code>P</code> function.</p>
+			<pre><code>
+b = P(X > a)
+			</code></pre>
+			<p>To get the calculated data, you may use the query syntax. A query consists of an optional query tag followed by <code>?</code> followed by the value to be queried.</p>
+			<pre><code>
+example one? b
+? E(X)
+			</code></pre>
+			<p>The output for these queries is:</p>
+			<table class="table table-striped table-bordered">
+				<thead>
+					<tr><th>Query</th><th>Result</th></tr>
+				</thead>
+				<tbody id="output"><tr><td>example one</td><td>0.12959999999999994</td></tr><tr><td></td><td>2.5</td></tr></tbody>
+			</table>
 		</div>
 	</div>
 	<script type="text/javascript" src="parser.js"></script>
