@@ -210,18 +210,32 @@ Value
         return env[rvar].E();
     }
 
-Inequality = rvar:RVar _ op:('='/'!='/'>='/'>'/'<='/'<') _ val:Expr {
-    if (env[rvar] === undefined)
-        throw new Error('random variable ' + rvar + ' does not exist');
-    switch (op) {
-    case '=': return env[rvar].p(val);
-    case '!=': return 1 - env[rvar].p(val);
-    case '<=': return env[rvar].F(val);
-    case '<': return env[rvar].F(val-epsilon);
-    case '>=': return 1 - env[rvar].F(val-epsilon);
-    case '>': return 1 - env[rvar].F(val);
-    }
-    throw new Error('invalid operator ' + op);
+Inequality
+    = rvar:RVar _ op:('='/'!='/'>='/'>'/'<='/'<') _ val:Expr {
+        if (env[rvar] === undefined)
+            throw new Error('random variable ' + rvar + ' does not exist');
+        switch (op) {
+        case '=': return env[rvar].p(val);
+        case '!=': return 1 - env[rvar].p(val);
+        case '<=': return env[rvar].F(val);
+        case '<': return env[rvar].F(val-epsilon);
+        case '>=': return 1 - env[rvar].F(val-epsilon);
+        case '>': return 1 - env[rvar].F(val);
+        }
+        throw new Error('invalid operator ' + op);
+}
+    / val:Expr _ op:('='/'!='/'>='/'>'/'<='/'<') _ rvar:RVar {
+        if (env[rvar] === undefined)
+            throw new Error('random variable ' + rvar + ' does not exist');
+        switch (op) {
+        case '=': return env[rvar].p(val);
+        case '!=': return 1 - env[rvar].p(val);
+        case '>=': return env[rvar].F(val);
+        case '>': return env[rvar].F(val-epsilon);
+        case '<=': return 1 - env[rvar].F(val-epsilon);
+        case '<': return 1 - env[rvar].F(val);
+        }
+        throw new Error('invalid operator ' + op);
 }
 
 // whitespace
