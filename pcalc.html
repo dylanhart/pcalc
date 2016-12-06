@@ -5,6 +5,8 @@
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<style type="text/css">
 		.panel > textarea.form-control {
 			border: none;
@@ -21,37 +23,48 @@
 <div class="container">
 	<h1>Discrete Distribution Calculator</h1>
 
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title">Input</h3>
-		</div>
-		<textarea id="input-area" class="form-control" rows=15></textarea>
-	</div>
-	<div id="err-alert" class="alert alert-danger" style="display:none;">
-		<strong>Error:</strong> <span id="err-msg"></span>
-	</div>
-	<div class="form-group">
-		<button id="calc-btn" class="btn btn-md btn-success">Calculate</button>
-	</div>
+	<ul class="nav nav-tabs" role="tabset">
+		<li class="active" role="presentation"><a href="#calc" data-toggle="tab">Calculator</a></li>
+		<li role="presentation"><a href="#help" data-toggle="tab">Help</a></li>
+	</ul>
+	<div class="tab-content">
+		<div class="tab-pane active" role="tabpanel" id="calc">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Input</h3>
+				</div>
+				<textarea id="input-area" class="form-control" rows=15></textarea>
+			</div>
+			<div id="err-alert" class="alert alert-danger" style="display:none;">
+				<strong>Error:</strong> <span id="err-msg"></span>
+			</div>
+			<div class="form-group">
+				<button id="calc-btn" class="btn btn-md btn-success">Calculate</button>
+			</div>
 
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title">Output</h3>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Output</h3>
+				</div>
+				<table class="table table-striped table-bordered">
+					<thead>
+						<tr><th>Query</th><th>Result</th></tr>
+					</thead>
+					<tbody id="output"></tbody>
+				</table>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<p id="footer-text">
+						Made by <a href="/">Dylan Hart</a>
+						&mdash;
+						View source on <a href="/">Github</a>
+					</p>
+				</div>
+			</div>
 		</div>
-		<table class="table table-striped table-bordered">
-			<thead>
-				<tr><th>Query</th><th>Result</th></tr>
-			</thead>
-			<tbody id="output"></tbody>
-		</table>
-	</div>
-	<div class="row">
-		<div class="col-xs-12">
-			<p id="footer-text">
-				Made by <a href="/">Dylan Hart</a>
-				&mdash;
-				View source on <a href="/">Github</a>
-			</p>
+		<div class="tab-pane" role="tabpanel" id="help">
+			<h3>Help</h3>
 		</div>
 	</div>
 	<script type="text/javascript" src="parser.js"></script>
