@@ -178,7 +178,7 @@ AddOp = _ op:[+-] _ val:Term {
     return {op: op, val: val};
 }
 
-Term = a:Value ops:MulOp* {
+Term = a:Factor ops:MulOp* {
     return ops.reduce(function(acc, op) {
         if (op.op === '*')
             return acc * op.val;
@@ -188,8 +188,17 @@ Term = a:Value ops:MulOp* {
             return acc / op.val;
     }, a);
 }
-MulOp = _ op:[*/%] _ val:Value {
+MulOp = _ op:[*/%] _ val:Factor {
     return {op: op, val: val};
+}
+
+Factor = a:Value ops:ExpOp* {
+    return ops.reduce(function(acc, e) {
+        return Math.pow(acc, e);
+    }, a);
+}
+ExpOp = _ '^' _ val:Value {
+    return val;
 }
 
 Value
