@@ -216,7 +216,7 @@
                 if (op.op === '/')
                     return acc / op.val;
                 if (op.op === '%')
-                    return acc / op.val;
+                    return acc % op.val;
             }, a);
         },
         peg$c40 = /^[*\/%]/,

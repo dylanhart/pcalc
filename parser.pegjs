@@ -185,7 +185,7 @@ Term = a:Factor ops:MulOp* {
         if (op.op === '/')
             return acc / op.val;
         if (op.op === '%')
-            return acc / op.val;
+            return acc % op.val;
     }, a);
 }
 MulOp = _ op:[*/%] _ val:Factor {
