@@ -13,11 +13,18 @@
         return factorial(n) / factorial(n - k) / factorial(k);
     };
 
+    var isProb = function(p) {
+        return p >= 0 && p <= 1;
+    }
+
     var dists = {};
     dists.bernoulli = function(p) {
         return dists.binomial(1, p);
     };
     dists.binomial = function(n, p) {
+        if (!isProb(p)) throw new Error(p + ' is not a valid probability');
+        if (!Number.isInteger(n)) throw new Error('number of trials must be an integer');
+        if (n <= 0) throw new Error('binomial distribution must have at least one trial');
         return {
             p: function(x) {
                 if (!Number.isInteger(x) || x < 0 || x > n)
@@ -44,6 +51,7 @@
         };
     };
     dists.geometric = function(p) {
+        if (!isProb(p)) throw new Error(p + ' is not a valid probability');
         return {
             p: function(x) {
                 if (!Number.isInteger(x) || x <= 0)
@@ -66,6 +74,9 @@
         };
     };
     dists.hypergeometric = function(N, m, n) {
+        if (!Number.isInteger(N) || !Number.isInteger(n) || !Number.isInteger(m)) throw new Error('HyperGeometic arguments must be integers');
+        if (m > N) throw new Error('number marked cannot be larger than total number for HyperGeometric distribution');
+        if (n > N) throw new Error('number chosen cannot be larger than total number for HyperGeometric distribution');
         return {
             p: function(x) {
                 if (!Number.isInteger(x) || x < 0 || x > m)
