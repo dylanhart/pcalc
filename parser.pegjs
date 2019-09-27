@@ -81,7 +81,7 @@
             p: function(x) {
                 if (!Number.isInteger(x) || x < 0 || x > m)
                     return 0;
-                return binomial(m, x) * binomial(N-m, n-x) / binomial(N, n);
+                return binom(m, x) * binom(N-m, n-x) / binom(N, n);
             },
             F: function(i) {
                 if (!Number.isInteger(i))
